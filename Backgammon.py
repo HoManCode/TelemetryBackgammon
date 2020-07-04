@@ -14,11 +14,12 @@ def iothub_client_init():
     client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
     return client
 
+
 def iothub_client_telemetry_sample_run():
 
     try:
         client = iothub_client_init()
-        print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
+        print("IoT Hub device sending periodic messages, press Ctrl-C to exit")
 
         while True:
 
@@ -27,11 +28,10 @@ def iothub_client_telemetry_sample_run():
             msg_txt_formatted = MSG_TXT.format(dice1=dice1, dice2=dice2)
             message = Message(msg_txt_formatted)
 
-
-            if dice1==dice2==6:
-              message.custom_properties["doublingAlert"] = "the player has four sixes to use"
+            if dice1 == dice2 == 6:
+                message.custom_properties["doublingAlert"] = "the player has four sixes to use"
             else:
-              message.custom_properties["doublingAlert"] = "the player sticks into normal rules"
+                message.custom_properties["doublingAlert"] = "the player sticks into normal rules"
 
             # Send the message.
             print("Sending message: {}".format(message))
@@ -41,9 +41,10 @@ def iothub_client_telemetry_sample_run():
             time.sleep(random.randint(20, 60))
 
     except KeyboardInterrupt:
-        print ( "IoTHubClient sample stopped" )
+        print("IoTHubClient sample stopped")
+
 
 if __name__ == '__main__':
-    print ( "IoT Hub Quickstart #1 - Simulated device" )
-    print ( "Press Ctrl-C to exit" )
+    print("IoT Hub Quickstart #1 - Simulated device")
+    print("Press Ctrl-C to exit")
     iothub_client_telemetry_sample_run()
