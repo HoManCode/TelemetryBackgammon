@@ -28,17 +28,17 @@ def iothub_client_telemetry_sample_run():
             message = Message(msg_txt_formatted)
 
 
-            if dice1==dice2==6 :
+            if dice1==dice2==6:
               message.custom_properties["doublingAlert"] = "the player has four sixes to use"
             else:
               message.custom_properties["doublingAlert"] = "the player sticks into normal rules"
 
             # Send the message.
-            print( "Sending message: {}".format(message) )
+            print("Sending message: {}".format(message))
             client.send_message(message)
             client.send_message(message.custom_properties["doublingAlert"])
-            print ( "Message successfully sent" )
-            time.sleep(random.randint(20,60))
+            print("Message successfully sent")
+            time.sleep(random.randint(20, 60))
 
     except KeyboardInterrupt:
         print ( "IoTHubClient sample stopped" )
